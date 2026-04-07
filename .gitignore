@@ -1,0 +1,119 @@
+# ── Large Dataset Files ────────────────────────────
+/Dataset/train.csv.zip
+/Dataset/transactions.csv.zip
+
+# ── Empty / Scratch Notebooks ──────────────────────
+notebooks/Untitled.ipynb
+notebooks/.ipynb_checkpoints/
+
+# ── Python ─────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.env
+.venv
+env/
+venv/
+
+# ── Jupyter ────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ── OS Files ───────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/1-s2-0-S0140366421004163-LSTM-MFCN A time series classifier based .pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/1-s2.0-S0031320321005653-Multi-scale signed recurrence plot based time series classification.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/1-s2.0-S0031320321005653-main-Multi-scale signed recurrence plot based time series.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/1-s2.0-S0040162520313068-main.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/1-s2.0-S0140366421004163-main-A time series classifier based on multi-scale.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/1-s2.0-S0169207021001618-main.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/1-s2.0-S0950705122001903-main-Adaptive feature fusion for time series classification.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/1-s2.0-S0957417422019418-Forest based on Interval Transformation- A time series classifier with.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/1-s2.0-S0957417422019418-main-Forest based on Interval Transformation.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/1-s2.0-S0957417423004438-main.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/1-s2.0-S1568494622005701-main-Broad fuzzy cognitive map systems for time series classification.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/1-s2.0-S2667096822000027-main.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/1603.06995v4-Multi-Scale Convolutional Neural Networks.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/1709.05206v1-LSTM Fully Convolutional Networks for Time.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/2106.15328v2-Deep Learning for Multi-view Stereo via Plane.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/2109.13696v1-IMPROVING TIME SERIES CLASSIFICATION ALGORITHMS.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/2109.13696v1-IMPROVING TIME SERIES CLASSIFICATION.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/2110.06436v1-Non-local Recurrent Regularization Networks.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/2112.00336v1-Multi-View Stereo with Transformer.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/2204.07786.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/3503161.3548212-Self-supervised Multi-view Stereo.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/3511808.3557107-Breast Cancer Early Detection with Time Series.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/A_New_Cross_Clustering_Algorithm_for_Improving_Performance_of_Supervised_Learning.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/A_Novel_Densely_Connected_Convolutional_Neural_Network_for_Sea-State_Estimation_Using_Ship_Motion_Data.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/An_Approach_to_Time_Series_Classification_Using_Binary_Distribution_Tree.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/An_Examination_of_the_State-of-the-Art_for_Multivariate_Time_Series_Classification.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Automatic_Sales_Forecasting_System_Based_On_LSTM_Network.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Bi-ClueMVSNet_Learning_Bidirectional_Occlusion_Clues_for_Multi-View_Stereo.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Bidirectional LSTM-RNN-based hybrid deep learning frameworks for univariate time series classification.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Bidirectional_Hybrid_LSTM_Based_Recurrent_Neural_Network_for_Multi-view_Stereo.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Comparative_Analysis_of_LSTM-FCN_on_Multiple_Datasets.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Deep Concatenated Residual Network With.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Deep_Stacked_Petroleum_1-s2.0-S187705092300248X-main.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Diabetes Prediction Using Bi‑directional Long Short‑Term Memory.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Efficient_Multi-view_Stereo_by_Iterative_Dynamic_Cost_Volume.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Forecasting_of_Multivariate_Time_Series_via_Complex_Fuzzy_Logic.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Future_Sales_Prediction_For_Indian_Products_Using_Convolutional_Neural_Network-Long_Short_Term_Memory.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Gated_Recurrent_Neural_Networks_Empirical_Utilization_for_Time_Series_Classification.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Gupta and Raghav - 2020 - Time Series Classification with Meta Learning.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Hybrid_Attention_Cascade_Multi-View_Stereo_Network.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Incorporating_Co-Visibility_Reasoning_Into_Surface_Depth_Measurement.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Jiang - 2020 - Time series classification nearest neighbor versu.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Johannes&Alamsyah.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Karim et al. - 2019 - Insights Into LSTM Fully Convolutional Networks fo.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Lei and Wu - 2020 - Time series classification based on statistical fe.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Ma et al. - 2020 - Edge4TSC Binary Distribution Tree-Enabled Time Se.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Multi-Frequency_Decomposition_with_Fully_Convolutional_Neural_Network_for_Time_Series_Classification.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Multi-View_Stereo_Representation_Revist_Region-Aware_MVSNet.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Multi-metric_Depth_Pyramid_and_Bilateral_Segmentation_Based_Depth_Inference_for_Multi-View_Stereo.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Munshi&Munshi.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/NR-MVSNet_Learning_Multi-View_Stereo_Based_on_Normal_Consistency_and_Depth_Refinement.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/On_the_Mining_of_the_Minimal_Set_of_Time_Series_Data_Shapelets.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Prototypical_Inception_Network_with_Cross_Branch_Attention_for_Time_Series_Classification.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Scalable_Classification_of_Univariate_and_Multivariate_Time_Series.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Sensor_Sequential_Data-Stream_Classification_Using_Deep_Gated_Hybrid_Architecture.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Siwerz.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Time-Series Classification based on Fusion Features.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Time-series forecasting of seasonal items sales using machine learning – A comparative analysis.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Uncertainty_Guided_Multi-View_Stereo_Network_for_Depth_Estimation.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Wang et al. - 2020 - Time-Series Classification Based on Fusion Feature.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Xu et al. - 2021 - Prediction of Soybean Price Trend via a Synthesis .pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Zhang et al. - 2021 - Random Subspace Ensembles of Fully Convolutional N.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Zhao_2021_J._Phys. _Conf._Ser._1746_012087.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/Zhu et al. - 2022 - Breast Cancer Early Detection with Time Series Cla.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/chen-et-al-2017-forecasting-seasonal-tourism-demand-using-a-multiseries-structural-time-series-method.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/csit101415_Time Series Classification with Meta Learning.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/fractalfract-07-00203-v2.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/n_m-Layer_MC-MHLF_Deep_Neural_Network_for_Classifying_Time_Series.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/s00138-023-01449-4-Multi-distribution fitting for multi-view stereo.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/s00530-022-01009-2-Hierarchical MVSNet with cost volume separation.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/s00779-020-01447-7-End-to-end multivariate time series classification.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/s10115-021-01630-z-1-Random pairwise shapelets fores.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/s10115-021-01630-z-Random pairwise shapelets forest.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/s10257-019-00399-7.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/s10489-022-03754-3-Multi-level fusion aware feature pyramid.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/s11063-021-10484-Attention‑Based Deep Gated Fully Convolutional End‑to‑End.pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/s11063-021-10484-z-1-Attention‑Based Deep Gated Fully Convolutional .pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/s11063-021-10484-z-Attention‑Based Deep Gated Fully Convolutional .pdf
+/stage_1_topic_selection/Topic 1 - Stacked Bi-directional LSTM/s11263-022-01628-2-Learning Inverse Depth Regression for Pixelwis.pdf
+/stage_1_topic_selection/Topic 2 - Recommendation System/ECommerce.pdf
+/stage_1_topic_selection/Topic 3 - NLP/Banerjee - 2023 - Semantic Parsing for Knowledge Graph Question Answ.pdf
+/stage_1_topic_selection/Topic 3 - NLP/Cao et al. - 2021 - Program Transfer for Answering Complex Questions o.pdf
+/stage_1_topic_selection/Topic 3 - NLP/Chen et al. - 2021 - ReTraCk A Flexible and Efficient Framework for Kn.pdf
+/stage_1_topic_selection/Topic 3 - NLP/Das et al. - 2021 - Case-based Reasoning for Natural Language Queries .pdf
+/stage_1_topic_selection/Topic 3 - NLP/Gu et al. - 2020 - Beyond I.I.D. Three Levels of Generalization for .pdf
+/stage_1_topic_selection/Topic 3 - NLP/Xie et al. - 2022 - A Sequential Flow Control Framework for Multi-hop .pdf
+/stage_4_final_report/Samples/Final_Report _Presentation_final.pptx
+/stage_4_final_report/Samples/Final_Thesis_Presentation.pdf

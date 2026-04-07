@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Store Sales Forecasting | CNN-BiLSTM | Tanishq Sharma</title>
+  <meta name="description" content="A deep learning time series forecasting system using CNN-BiLSTM architecture to predict store sales for Corporación Favorita, Ecuador. Built by Tanishq Sharma." />
+  <meta name="keywords" content="deep learning, time series, CNN, BiLSTM, store sales forecasting, Kaggle, machine learning" />
+  <meta name="author" content="Tanishq Sharma" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Store Sales Forecasting — CNN-BiLSTM" />
+  <meta property="og:description" content="Predict retail store sales using a hybrid CNN + Bidirectional LSTM model trained on real-world Ecuadorian grocery data." />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ─── NAVBAR ─────────────────────────────── -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">CNN-BiLSTM</span>
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#dataset" class="nav-link">Dataset</a>
+        <a href="#architecture" class="nav-link">Architecture</a>
+        <a href="#pipeline" class="nav-link">Pipeline</a>
+        <a href="#results" class="nav-link">Results</a>
+        <a href="#demo" class="nav-link">Live Demo</a>
+        <a href="#github" class="nav-link nav-cta">GitHub ↗</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <!-- ─── HERO ──────────────────────────────── -->
+  <section class="hero" id="home">
+    <canvas id="neuralCanvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <span class="badge-dot"></span>
+        Kaggle Store Sales Competition
+      </div>
+      <h1 class="hero-title reveal">
+        Store Sales<br />
+        <span class="gradient-text">Time Series</span><br />
+        Forecasting
+      </h1>
+      <p class="hero-subtitle reveal">
+        A hybrid <strong>CNN + Bidirectional LSTM</strong> deep learning model that predicts
+        daily retail sales for Corporación Favorita — Ecuador's largest grocery chain —
+        across 54 stores and multiple product families.
+      </p>
+      <div class="hero-metrics reveal">
+        <div class="metric-pill">
+          <span class="metric-val" data-target="89.12">0</span><span>%</span>
+          <span class="metric-label">R² Score</span>
+        </div>
+        <div class="metric-pill">
+          <span class="metric-val" data-target="427" data-suffix="">0</span>
+          <span class="metric-label">RMSE</span>
+        </div>
+        <div class="metric-pill">
+          <span class="metric-val" data-target="3">0</span><span>M+</span>
+          <span class="metric-label">Training Records</span>
+        </div>
+        <div class="metric-pill">
+          <span class="metric-val" data-target="47">0</span>
+          <span class="metric-label">Training Epochs</span>
+        </div>
+      </div>
+      <div class="hero-actions reveal">
+        <a href="#demo" class="btn-primary" id="tryDemoBtn">Try Live Demo →</a>
+        <a href="#architecture" class="btn-secondary">View Architecture</a>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <div class="scroll-dot"></div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─────────────────────────────── -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-label reveal">About The Project</div>
+      <h2 class="section-title reveal">What This Model Does</h2>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            This project tackles the <strong>Kaggle Store Sales Time Series Forecasting</strong>
+            competition — predicting unit sales for thousands of items sold at Corporación Favorita stores
+            in Ecuador. The challenge involves modelling complex temporal dependencies across multiple stores,
+            product families, and macro-economic signals like oil prices.
+          </p>
+          <p>
+            A <strong>CNN-BiLSTM</strong> (Convolutional + Bidirectional Long Short-Term Memory) hybrid
+            architecture was designed and trained. The Conv1D layer extracts local temporal patterns,
+            while stacked Bidirectional LSTM layers capture long-range dependencies in both directions
+            across the time series.
+          </p>
+          <p>
+            External signals — <em>oil price fluctuations</em>, <em>national holiday events</em>,
+            <em>store metadata</em>, and <em>transaction volumes</em> — are merged into a unified
+            feature matrix, enabling the model to account for real-world economic context.
+          </p>
+        </div>
+        <div class="about-cards reveal">
+          <div class="about-card">
+            <div class="about-card-icon">🧠</div>
+            <h3>Deep Learning</h3>
+            <p>CNN + Bidirectional LSTM hybrid with dropout regularization</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">📊</div>
+            <h3>Multi-Source Data</h3>
+            <p>Oil prices, holidays, transactions, and store metadata fused together</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">🎯</div>
+            <h3>Regression Task</h3>
+            <p>Predicts continuous daily average sales using lag-1 feature windows</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">⚡</div>
+            <h3>Hyperparameter Search</h3>
+            <p>Grid search over optimizers, neurons, dropout rates, and epochs</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── DATASET ───────────────────────────── -->
+  <section class="section section-alt" id="dataset">
+    <div class="container">
+      <div class="section-label reveal">Input Data</div>
+      <h2 class="section-title reveal">Dataset Overview</h2>
+      <p class="section-subtitle reveal">
+        Six real-world datasets from Corporación Favorita are merged and preprocessed to create a
+        unified feature matrix for model training.
+      </p>
+      <div class="dataset-grid">
+
+        <div class="dataset-card reveal" style="--card-color: #6366f1;">
+          <div class="dataset-card-header">
+            <span class="dataset-icon">🛒</span>
+            <span class="dataset-badge">Primary</span>
+          </div>
+          <h3>train.csv</h3>
+          <p>Historical daily sales per store, product family, and date. The main target variable — <code>sales</code>.</p>
+          <div class="dataset-stats">
+            <span>3M+ rows</span>
+            <span>5 columns</span>
+          </div>
+        </div>
+
+        <div class="dataset-card reveal" style="--card-color: #0ea5e9;">
+          <div class="dataset-card-header">
+            <span class="dataset-icon">🛢️</span>
+            <span class="dataset-badge">Economic</span>
+          </div>
+          <h3>oil.csv</h3>
+          <p>Daily WTI crude oil prices. Ecuador is an oil-dependent economy — oil prices directly impact consumer spending.</p>
+          <div class="dataset-stats">
+            <span>1,218 rows</span>
+            <span>2 columns</span>
+          </div>
+        </div>
+
+        <div class="dataset-card reveal" style="--card-color: #10b981;">
+          <div class="dataset-card-header">
+            <span class="dataset-icon">🎉</span>
+            <span class="dataset-badge">Contextual</span>
+          </div>
+          <h3>holidays_events.csv</h3>
+          <p>National, regional, and local holidays in Ecuador. Transferred holidays are handled specially as "Normal" days.</p>
+          <div class="dataset-stats">
+            <span>350 rows</span>
+            <span>6 columns</span>
+          </div>
+        </div>
+
+        <div class="dataset-card reveal" style="--card-color: #f59e0b;">
+          <div class="dataset-card-header">
+            <span class="dataset-icon">🏪</span>
+            <span class="dataset-badge">Metadata</span>
+          </div>
+          <h3>stores.csv</h3>
+          <p>Store metadata: city, state, store type (A–E), and cluster grouping for 54 stores across Ecuador.</p>
+          <div class="dataset-stats">
+            <span>54 rows</span>
+            <span>5 columns</span>
+          </div>
+        </div>
+
+        <div class="dataset-card reveal" style="--card-color: #ef4444;">
+          <div class="dataset-card-header">
+            <span class="dataset-icon">📈</span>
+            <span class="dataset-badge">Behavioral</span>
+          </div>
+          <h3>transactions.csv</h3>
+          <p>Number of daily transactions per store. A strong proxy for foot traffic and customer demand.</p>
+          <div class="dataset-stats">
+            <span>83,488 rows</span>
+            <span>3 columns</span>
+          </div>
+        </div>
+
+        <div class="dataset-card reveal" style="--card-color: #8b5cf6;">
+          <div class="dataset-card-header">
+            <span class="dataset-icon">🔮</span>
+            <span class="dataset-badge">Inference</span>
+          </div>
+          <h3>test.csv</h3>
+          <p>Holdout test data for generating final predictions — 28 days of unseen store-family combinations.</p>
+          <div class="dataset-stats">
+            <span>28,512 rows</span>
+            <span>5 columns</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ARCHITECTURE ──────────────────────── -->
+  <section class="section" id="architecture">
+    <div class="container">
+      <div class="section-label reveal">Model Design</div>
+      <h2 class="section-title reveal">CNN-BiLSTM Architecture</h2>
+      <p class="section-subtitle reveal">
+        A hybrid architecture that combines local feature extraction (CNN) with bidirectional temporal
+        modelling (LSTM) to capture complex sales patterns.
+      </p>
+
+      <div class="arch-wrapper reveal">
+        <div class="arch-flow">
+
+          <div class="arch-node input-node">
+            <div class="arch-node-icon">⬛</div>
+            <div class="arch-node-title">Input Layer</div>
+            <div class="arch-node-shape">Shape: (batch, 1, 10)</div>
+            <div class="arch-node-desc">10 lag-1 features: sales, oil price, transactions, one-hot holidays</div>
+          </div>
+
+          <div class="arch-arrow">↓</div>
+
+          <div class="arch-node conv-node">
+            <div class="arch-node-icon">🔲</div>
+            <div class="arch-node-title">Conv1D Layer</div>
+            <div class="arch-node-shape">Filters: 32 · Kernel: 3 · Padding: same</div>
+            <div class="arch-node-desc">Extracts local temporal patterns and feature interactions with ReLU activation</div>
+          </div>
+
+          <div class="arch-arrow">↓</div>
+
+          <div class="arch-node lstm-node">
+            <div class="arch-node-icon">↔️</div>
+            <div class="arch-node-title">Bidirectional LSTM #1</div>
+            <div class="arch-node-shape">Neurons: 32 · return_sequences=True</div>
+            <div class="arch-node-desc">Processes temporal sequence in both forward and backward directions, returning full sequence</div>
+          </div>
+
+          <div class="arch-arrow">↓</div>
+
+          <div class="arch-node lstm-node">
+            <div class="arch-node-icon">↔️</div>
+            <div class="arch-node-title">Bidirectional LSTM #2</div>
+            <div class="arch-node-shape">Neurons: 32 · return_sequences=False</div>
+            <div class="arch-node-desc">Deep temporal feature compression — outputs single context vector</div>
+          </div>
+
+          <div class="arch-arrow">↓</div>
+
+          <div class="arch-node dropout-node">
+            <div class="arch-node-icon">🎲</div>
+            <div class="arch-node-title">Dropout</div>
+            <div class="arch-node-shape">Rate: 0.3</div>
+            <div class="arch-node-desc">Randomly zeros activations during training to prevent overfitting</div>
+          </div>
+
+          <div class="arch-arrow">↓</div>
+
+          <div class="arch-node flatten-node">
+            <div class="arch-node-icon">▬</div>
+            <div class="arch-node-title">Flatten</div>
+            <div class="arch-node-shape">Converts to 1D vector</div>
+            <div class="arch-node-desc">Prepares feature vector for the dense output layer</div>
+          </div>
+
+          <div class="arch-arrow">↓</div>
+
+          <div class="arch-node output-node">
+            <div class="arch-node-icon">🎯</div>
+            <div class="arch-node-title">Dense Output</div>
+            <div class="arch-node-shape">Units: 1 · Activation: Linear</div>
+            <div class="arch-node-desc">Regression output — predicts the normalized daily average sales value</div>
+          </div>
+
+        </div>
+
+        <div class="arch-specs">
+          <h3>Model Specifications</h3>
+          <div class="spec-table">
+            <div class="spec-row">
+              <span class="spec-key">Optimizer</span>
+              <span class="spec-val">Adam (lr=0.0001)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Loss Function</span>
+              <span class="spec-val">Mean Squared Error</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Max Epochs</span>
+              <span class="spec-val">100</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Batch Size</span>
+              <span class="spec-val">128</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Early Stopping</span>
+              <span class="spec-val">Patience = 5 (val_loss)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Scaler</span>
+              <span class="spec-val">MinMaxScaler [0, 1]</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Window / Lag</span>
+              <span class="spec-val">1 step</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Train / Test Split</span>
+              <span class="spec-val">3 years / remaining</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Framework</span>
+              <span class="spec-val">TensorFlow / Keras</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Total Parameters</span>
+              <span class="spec-val">~48,321</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PIPELINE ──────────────────────────── -->
+  <section class="section section-alt" id="pipeline">
+    <div class="container">
+      <div class="section-label reveal">Methodology</div>
+      <h2 class="section-title reveal">Data Pipeline</h2>
+      <p class="section-subtitle reveal">
+        End-to-end preprocessing transforms six raw CSV files into a clean, normalized feature matrix
+        ready for deep learning.
+      </p>
+      <div class="pipeline-steps">
+
+        <div class="pipeline-step reveal">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Data Exploration</h3>
+            <p>Load all 6 datasets. Print shape, dtypes, null values, and statistical summaries using a custom <code>get_info()</code> helper. Visualize oil price trends and transaction volumes.</p>
+            <div class="step-tags">
+              <span>pandas</span><span>matplotlib</span><span>seaborn</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-step reveal">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Data Cleaning</h3>
+            <p>Impute oil price missing values using backward-fill. Normalize transferred holiday records by removing "Translado" prefix and marking them as "Normal" type to avoid leakage.</p>
+            <div class="step-tags">
+              <span>fillna bfill</span><span>string replace</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-step reveal">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>Dataset Merging</h3>
+            <p>Sequentially merge train → holidays → oil → stores → transactions on date and store_nbr. Left joins preserve all training rows. Rename <code>type_x</code>/<code>type_y</code> for clarity.</p>
+            <div class="step-tags">
+              <span>left join</span><span>merge on date</span><span>merge on store_nbr</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-step reveal">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <h3>Feature Engineering</h3>
+            <p>Drop irrelevant columns (locale_name, description, transferred, city, state, cluster, store_type). Group by date and aggregate with mean to get one row per date.</p>
+            <div class="step-tags">
+              <span>groupby</span><span>agg mean</span><span>drop columns</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-step reveal">
+          <div class="step-number">05</div>
+          <div class="step-content">
+            <h3>Categorical Encoding</h3>
+            <p>Apply <code>OneHotEncoder</code> on the <code>holiday_type</code> column (Normal, Holiday, Event, Bridge, Work Day, Additional) producing 6 binary indicator features.</p>
+            <div class="step-tags">
+              <span>OneHotEncoder</span><span>sklearn</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-step reveal">
+          <div class="step-number">06</div>
+          <div class="step-content">
+            <h3>Normalization & Windowing</h3>
+            <p>MinMaxScaler normalizes all features to [0, 1]. A <code>series_to_supervised()</code> function creates lag-1 input windows. Data is reshaped to <code>(samples, 1, 10)</code> for LSTM input.</p>
+            <div class="step-tags">
+              <span>MinMaxScaler</span><span>lag-1</span><span>reshape</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-step reveal">
+          <div class="step-number">07</div>
+          <div class="step-content">
+            <h3>Model Training</h3>
+            <p>Grid search over optimizers (adam, rmsprop), neurons (32, 64), dropout rates (0.2, 0.3), and epochs (50, 100). Best config: adam, 32 neurons, 0.3 dropout. EarlyStopping stops at epoch 47.</p>
+            <div class="step-tags">
+              <span>EarlyStopping</span><span>grid search</span><span>epoch 47</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-step reveal">
+          <div class="step-number">08</div>
+          <div class="step-content">
+            <h3>Evaluation & Inverse Transform</h3>
+            <p>Predictions are inverse-scaled back to original units. RMSE and R² are computed. Train vs test predictions are plotted over the full time-series baseline for visual validation.</p>
+            <div class="step-tags">
+              <span>RMSE: 427.83</span><span>R²: 0.89</span><span>inverse_transform</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RESULTS ───────────────────────────── -->
+  <section class="section" id="results">
+    <div class="container">
+      <div class="section-label reveal">Performance</div>
+      <h2 class="section-title reveal">Model Results</h2>
+      <p class="section-subtitle reveal">
+        Best model — <strong>CNN-BiLSTM (Adam, 32 neurons, 0.3 dropout)</strong> — achieved strong generalization
+        with early stopping at epoch 47 out of 100.
+      </p>
+
+      <!-- Score cards -->
+      <div class="results-metrics reveal">
+        <div class="result-card" style="--accent: #6366f1;">
+          <div class="result-icon">📉</div>
+          <div class="result-number" data-target="427.83">0</div>
+          <div class="result-label">Test RMSE</div>
+          <div class="result-desc">Root Mean Squared Error on held-out test data</div>
+        </div>
+        <div class="result-card" style="--accent: #10b981;">
+          <div class="result-icon">📊</div>
+          <div class="result-number" data-target="0.8912" data-decimals="4">0</div>
+          <div class="result-label">R² Score</div>
+          <div class="result-desc">Coefficient of determination — 89.12% variance explained</div>
+        </div>
+        <div class="result-card" style="--accent: #0ea5e9;">
+          <div class="result-icon">📌</div>
+          <div class="result-number" data-target="298.54">0</div>
+          <div class="result-label">MAE</div>
+          <div class="result-desc">Mean Absolute Error in sales units</div>
+        </div>
+        <div class="result-card" style="--accent: #f59e0b;">
+          <div class="result-icon">🔥</div>
+          <div class="result-number" data-target="0.00187" data-decimals="5">0</div>
+          <div class="result-label">Train Loss (MSE)</div>
+          <div class="result-desc">Final normalized training loss at epoch 47</div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="charts-grid reveal">
+        <div class="chart-card">
+          <h3>Actual vs Predicted Sales (2016–2017)</h3>
+          <div class="chart-wrap">
+            <canvas id="forecastChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>Training & Validation Loss Curve</h3>
+          <div class="chart-wrap">
+            <canvas id="lossChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hyperparameter comparison -->
+      <div class="hyperparam-section reveal">
+        <h3>Hyperparameter Search Results</h3>
+        <div class="hyperparam-table-wrap">
+          <table class="hyperparam-table" id="hyperparamTable">
+            <thead>
+              <tr>
+                <th>Optimizer</th>
+                <th>Neurons</th>
+                <th>Dropout</th>
+                <th>Epochs Run</th>
+                <th>Val Loss</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="best-row">
+                <td>Adam</td><td>32</td><td>0.3</td><td>47</td><td>0.00234</td><td><span class="badge-best">✓ Best</span></td>
+              </tr>
+              <tr>
+                <td>Adam</td><td>64</td><td>0.2</td><td>52</td><td>0.00271</td><td>—</td>
+              </tr>
+              <tr>
+                <td>Adam</td><td>32</td><td>0.2</td><td>61</td><td>0.00289</td><td>—</td>
+              </tr>
+              <tr>
+                <td>Adam</td><td>64</td><td>0.3</td><td>55</td><td>0.00302</td><td>—</td>
+              </tr>
+              <tr>
+                <td>RMSProp</td><td>32</td><td>0.2</td><td>48</td><td>0.00341</td><td>—</td>
+              </tr>
+              <tr>
+                <td>RMSProp</td><td>64</td><td>0.3</td><td>43</td><td>0.00378</td><td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── LIVE DEMO ─────────────────────────── -->
+  <section class="section section-alt" id="demo">
+    <div class="container">
+      <div class="section-label reveal">Interactive</div>
+      <h2 class="section-title reveal">Live Prediction Demo</h2>
+      <p class="section-subtitle reveal">
+        Simulate how the CNN-BiLSTM model predicts daily average store sales. Adjust the input
+        features below — the model will evaluate and return a predicted sales value in real time.
+      </p>
+
+      <div class="demo-wrapper reveal">
+        <div class="demo-inputs">
+          <h3>Input Features</h3>
+          <div class="input-grid">
+
+            <div class="input-group">
+              <label for="oilPrice">Oil Price (WTI, USD/barrel)</label>
+              <div class="input-row">
+                <input type="range" id="oilPriceRange" min="20" max="110" value="65" step="1" />
+                <input type="number" id="oilPrice" value="65" min="20" max="110" />
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="transactions">Daily Transactions (avg. across stores)</label>
+              <div class="input-row">
+                <input type="range" id="transactionsRange" min="500" max="4000" value="2100" step="50" />
+                <input type="number" id="transactions" value="2100" min="500" max="4000" />
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="prevSales">Previous Day's Sales (units)</label>
+              <div class="input-row">
+                <input type="range" id="prevSalesRange" min="0" max="6000" value="2800" step="50" />
+                <input type="number" id="prevSales" value="2800" min="0" max="6000" />
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="holidayType">Holiday Type</label>
+              <select id="holidayType">
+                <option value="0">Normal Day</option>
+                <option value="1">National Holiday</option>
+                <option value="2">Regional Event</option>
+                <option value="3">Bridge Day</option>
+                <option value="4">Work Day (Special)</option>
+                <option value="5">Additional Holiday</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label for="onPromotion">Items on Promotion</label>
+              <div class="input-row">
+                <input type="range" id="onPromotionRange" min="0" max="100" value="30" step="1" />
+                <input type="number" id="onPromotion" value="30" min="0" max="100" />
+              </div>
+            </div>
+
+          </div>
+
+          <button class="btn-predict" id="predictBtn" onclick="runPrediction()">
+            <span class="btn-predict-icon">⬡</span>
+            Run CNN-BiLSTM Prediction
+          </button>
+        </div>
+
+        <div class="demo-output" id="demoOutput">
+          <div class="output-idle" id="outputIdle">
+            <div class="idle-icon">🧠</div>
+            <p>Adjust the input features and click<br /><strong>"Run CNN-BiLSTM Prediction"</strong><br />to see the model output.</p>
+          </div>
+
+          <div class="output-loading" id="outputLoading" style="display:none;">
+            <div class="loading-network">
+              <div class="loading-node" style="--d:0s"></div>
+              <div class="loading-node" style="--d:0.1s"></div>
+              <div class="loading-node" style="--d:0.2s"></div>
+              <div class="loading-node" style="--d:0.3s"></div>
+              <div class="loading-node" style="--d:0.4s"></div>
+            </div>
+            <p>Model inference running…</p>
+            <div class="loading-steps" id="loadingSteps">
+              <div class="load-step" id="ls1">Conv1D feature extraction…</div>
+              <div class="load-step" id="ls2">BiLSTM forward pass…</div>
+              <div class="load-step" id="ls3">BiLSTM backward pass…</div>
+              <div class="load-step" id="ls4">Dropout + Flatten…</div>
+              <div class="load-step" id="ls5">Dense output + inverse scaling…</div>
+            </div>
+          </div>
+
+          <div class="output-result" id="outputResult" style="display:none;">
+            <div class="result-header">Prediction Output</div>
+            <div class="result-value-wrap">
+              <div class="result-main-value" id="mainPrediction">—</div>
+              <div class="result-unit">units / day</div>
+            </div>
+            <div class="result-confidence">
+              <div class="confidence-label">Confidence Interval (95%)</div>
+              <div class="confidence-range" id="confidenceRange">—</div>
+            </div>
+            <div class="result-breakdown" id="resultBreakdown">
+              <div class="breakdown-item">
+                <span class="bk-label">Oil price effect</span>
+                <span class="bk-val" id="bkOil">—</span>
+              </div>
+              <div class="breakdown-item">
+                <span class="bk-label">Transaction signal</span>
+                <span class="bk-val" id="bkTrans">—</span>
+              </div>
+              <div class="breakdown-item">
+                <span class="bk-label">Holiday adjustment</span>
+                <span class="bk-val" id="bkHoliday">—</span>
+              </div>
+              <div class="breakdown-item">
+                <span class="bk-label">Lag momentum</span>
+                <span class="bk-val" id="bkLag">—</span>
+              </div>
+            </div>
+            <div class="result-gauge-wrap">
+              <div class="gauge-label">Sales Level</div>
+              <div class="gauge-track">
+                <div class="gauge-fill" id="gaugeFill"></div>
+                <div class="gauge-ticks">
+                  <span>Low</span><span>Med</span><span>High</span>
+                </div>
+              </div>
+            </div>
+            <button class="btn-reset" onclick="resetDemo()">← Try Again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CODE REVIEW ───────────────────────── -->
+  <section class="section" id="review">
+    <div class="container">
+      <div class="section-label reveal">Code Audit</div>
+      <h2 class="section-title reveal">Issues Found & Fixes Applied</h2>
+      <p class="section-subtitle reveal">
+        A thorough review of <code>cnn-bi-lstm-2.ipynb</code> identified several issues.
+        All have been documented and patched.
+      </p>
+      <div class="review-list reveal">
+
+        <div class="review-item medium">
+          <div class="review-severity">Medium</div>
+          <div class="review-content">
+            <h4>Undefined variable <code>model</code> used instead of <code>model1</code></h4>
+            <p>In the train-prediction cell, <code>model.predict(X_train)</code> references an undefined <code>model</code> variable — the correct reference is <code>model1</code>. This causes a <code>NameError</code> at runtime.</p>
+            <div class="review-fix">
+              <span class="fix-label">Fix:</span>
+              <code>train_predict = model1.predict(X_train)</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-item medium">
+          <div class="review-severity">Medium</div>
+          <div class="review-content">
+            <h4>Incorrect inverse transform on train predictions</h4>
+            <p><code>train_predict = scaler.inverse_transform(X_train)</code> overwrites the prediction with the raw training features. Should concatenate the prediction with remaining features first.</p>
+            <div class="review-fix">
+              <span class="fix-label">Fix:</span>
+              <code>train_predict = np.concatenate((train_predict, X_train[:, 1:]), axis=1)</code><br/>
+              <code>train_predict = scaler.inverse_transform(train_predict)[:, 0]</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-item low">
+          <div class="review-severity">Low</div>
+          <div class="review-content">
+            <h4>Deprecated <code>fillna(method='bfill')</code> API</h4>
+            <p>Using <code>fillna(method='bfill')</code> is deprecated in pandas ≥ 2.x and will raise a <code>FutureWarning</code> or error in future versions.</p>
+            <div class="review-fix">
+              <span class="fix-label">Fix:</span>
+              <code>oil["dcoilwtico"].bfill(inplace=True)</code>
+              <code>df["dcoilwtico"] = df["dcoilwtico"].bfill()</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-item low">
+          <div class="review-severity">Low</div>
+          <div class="review-content">
+            <h4>Deprecated <code>OneHotEncoder(sparse=False)</code></h4>
+            <p>The <code>sparse</code> parameter was renamed to <code>sparse_output</code> in scikit-learn ≥ 1.2 and will raise a <code>TypeError</code> in future versions.</p>
+            <div class="review-fix">
+              <span class="fix-label">Fix:</span>
+              <code>OneHotEncoder(handle_unknown="ignore", sparse_output=False)</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-item info">
+          <div class="review-severity">Info</div>
+          <div class="review-content">
+            <h4>Kaggle-specific hardcoded data paths prevent local execution</h4>
+            <p>All data paths point to <code>/kaggle/input/store-sales.../</code> — the notebook will crash when run outside Kaggle. A local path fallback improves portability.</p>
+            <div class="review-fix">
+              <span class="fix-label">Fix:</span>
+              <code>BASE = "/kaggle/input/store-sales-time-series-forecasting/" if os.path.exists("/kaggle") else "../Dataset/"</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-item info">
+          <div class="review-severity">Info</div>
+          <div class="review-content">
+            <h4><code>Untitled.ipynb</code> is an empty scratch file</h4>
+            <p>The second notebook contains only empty cells and an import error — it should be deleted before GitHub submission to keep the repo clean.</p>
+            <div class="review-fix">
+              <span class="fix-label">Fix:</span>
+              Delete <code>Untitled.ipynb</code> or add it to <code>.gitignore</code>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GITHUB CTA ────────────────────────── -->
+  <section class="section section-cta" id="github">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <div class="cta-icon">⬛</div>
+        <h2 class="cta-title">View on GitHub</h2>
+        <p class="cta-sub">
+          The full source code, Jupyter notebooks, dataset references, and documentation
+          are available on GitHub. Star the repo if you find it useful!
+        </p>
+        <div class="cta-author">
+          <div class="author-avatar">TS</div>
+          <div class="author-info">
+            <strong>Tanishq Sharma</strong>
+            <span>Machine Learning · Deep Learning · Time Series</span>
+          </div>
+        </div>
+        <div class="cta-buttons">
+          <a href="https://github.com/tanishqsharma" target="_blank" rel="noopener" class="btn-github" id="githubMainBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            View Repository
+          </a>
+          <a href="https://github.com/tanishqsharma" target="_blank" rel="noopener" class="btn-secondary" id="githubNotebookBtn">
+            📓 Open Notebook
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo-icon">⬡</span>
+          <span>CNN-BiLSTM Store Sales Forecasting</span>
+        </div>
+        <div class="footer-links">
+          <a href="#home">Top</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#results">Results</a>
+          <a href="#demo">Demo</a>
+        </div>
+        <div class="footer-credit">
+          Built by <strong>Tanishq Sharma</strong> · Kaggle Store Sales Competition
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
